@@ -37,9 +37,3 @@ export const getDogByBreed = async (breed: string) => {
       };
     });
 };
-
-const items = [
-  "https://dog.ceo/api/breeds/image/random/2",
-  "https://dog.ceo/api/breeds/image/random",
-  "https://dog.ceo/api/breeds/image/random",
-];

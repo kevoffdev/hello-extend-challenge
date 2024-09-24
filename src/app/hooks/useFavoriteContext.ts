@@ -3,7 +3,7 @@ import {useContext} from "react";
 import {FavoriteContext} from "../favorites-provider";
 
 export const useFavoriteContext = () => {
-  const {favoriteDogs, setFavoriteDogs, handleFavoritesDogs} = useContext(FavoriteContext);
+  const {favorites, setFavorites, handleFavoritesDogs} = useContext(FavoriteContext);
 
-  return {favoriteDogs, setFavoriteDogs, handleFavoritesDogs};
+  return {favorites, setFavorites, handleFavoritesDogs};
 };

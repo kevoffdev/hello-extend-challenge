@@ -5,28 +5,28 @@ import {createContext, Dispatch, SetStateAction, useEffect, useState} from "reac
 import {Dog} from "./types";
 
 export const FavoriteContext = createContext<{
-  favoriteDogs: Dog["url"][];
-  setFavoriteDogs: Dispatch<SetStateAction<Dog["url"][]>>;
+  favorites: Dog["url"][];
+  setFavorites: Dispatch<SetStateAction<Dog["url"][]>>;
   handleFavoritesDogs: (dog: Dog["url"]) => void;
 }>({
-  favoriteDogs: [],
-  setFavoriteDogs: () => {},
+  favorites: [],
+  setFavorites: () => {},
   handleFavoritesDogs: () => {},
 });
 
 export default function FavoriteProvider({children}: {children: React.ReactNode}) {
-  const [favoriteDogs, setFavoriteDogs] = useState<Dog["url"][]>([]);
+  const [favorites, setFavorites] = useState<Dog["url"][]>([]);
 
   function handleFavoritesDogs(dog: Dog["url"]) {
-    if (favoriteDogs.includes(dog)) {
-      const newFavoriteDogs = favoriteDogs.filter((item) => item !== dog);
+    if (favorites.includes(dog)) {
+      const newFavoriteDogs = favorites.filter((item) => item !== dog);
 
       localStorage.setItem("favorites", JSON.stringify(newFavoriteDogs));
 
-      return setFavoriteDogs(newFavoriteDogs);
+      return setFavorites(newFavoriteDogs);
     } else {
-      setFavoriteDogs(() => {
-        const newFavoriteDogs = favoriteDogs.concat(dog);
+      setFavorites(() => {
+        const newFavoriteDogs = favorites.concat(dog);
 
         localStorage.setItem("favorites", JSON.stringify(newFavoriteDogs));
 
@@ -38,13 +38,13 @@ export default function FavoriteProvider({children}: {children: React.ReactNode}
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("favorites") as Dog["url"]) as Dog["url"][] | null;
 
-    setFavoriteDogs((prevValue) => {
+    setFavorites((prevValue) => {
       return data ? data : prevValue;
     });
   }, []);
 
   return (
-    <FavoriteContext.Provider value={{favoriteDogs, setFavoriteDogs, handleFavoritesDogs}}>
+    <FavoriteContext.Provider value={{favorites, setFavorites, handleFavoritesDogs}}>
       {children}
     </FavoriteContext.Provider>
   );
