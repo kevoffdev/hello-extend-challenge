@@ -37,3 +37,20 @@ export const getDogByBreed = async (breed: string) => {
       };
     });
 };
+
+export const getAllBreedsDogs = async () => {
+  return await fetch("https://dog.ceo/api/breeds/list/all")
+    .then((resp) => resp.json() as Promise<{message: string[]; status: string}>)
+    .then((resp) => {
+      return {
+        dogs: Object.keys(resp.message),
+        status: resp.status,
+      };
+    })
+    .catch((err) => {
+      return {
+        dogs: [],
+        status: "error",
+      };
+    });
+};

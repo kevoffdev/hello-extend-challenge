@@ -4,9 +4,10 @@ import Link from "next/link";
 
 import "./globals.css";
 
-import FavoriteProvider from "./favorites-provider";
+import FavoriteProvider from "./DogsContext";
 import {Search} from "./ui/components/Search";
 import {FavoritesDogs} from "./ui/components/FavoritesDogs";
+import {ListBreeds} from "./ui/components/ListBreeds";
 
 import {HeartIcon} from "@/assets/icons";
 
@@ -26,6 +27,7 @@ function RootLayout({children}: {children: React.ReactNode}) {
         </header>
         <main>
           <Search />
+          <ListBreeds />
           {children}
           <hr className="h-0.5 bg-gray-500" />
           <FavoritesDogs />

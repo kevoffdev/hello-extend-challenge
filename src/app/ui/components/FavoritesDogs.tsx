@@ -1,11 +1,10 @@
-"use client";
 import {CardDog} from "./CardDog";
 
-import {useFavoriteContext} from "@/app/hooks/useFavoriteContext";
+import {useDogsContext} from "@/app/hooks/useDogsContext";
 import {HeartIcon} from "@/assets/icons";
 
 export function FavoritesDogs() {
-  const {favorites} = useFavoriteContext();
+  const {state} = useDogsContext();
 
   return (
     <div className="py-8" id="favorites">
@@ -13,9 +12,9 @@ export function FavoritesDogs() {
         <HeartIcon color="red" />
         <span className="text-2xl font-bold leading-[4rem]">Favorites</span>
       </div>
-      {favorites.length ? (
+      {state.favorites.length ? (
         <div className="grid grid-cols-3 gap-4 py-8">
-          {favorites.map((dog) => (
+          {state.favorites.map((dog) => (
             <CardDog key={dog} dog={dog} />
           ))}
         </div>

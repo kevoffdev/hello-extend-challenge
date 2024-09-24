@@ -1,9 +1,9 @@
 "use client";
-import {useFavoriteContext} from "@/app/hooks/useFavoriteContext";
+import {useDogsContext} from "@/app/hooks/useDogsContext";
 import {HeartIcon} from "@/assets/icons";
 
 export function CardDog({dog}: {dog: string}) {
-  const {favorites, handleFavoritesDogs} = useFavoriteContext();
+  const {state, actions} = useDogsContext();
 
   return (
     <article className="relative w-full">
@@ -11,9 +11,9 @@ export function CardDog({dog}: {dog: string}) {
       <button
         className="absolute bottom-0 right-0 m-2"
         type="button"
-        onClick={() => handleFavoritesDogs(dog)}
+        onClick={() => actions.handleFavoritesDogs(dog)}
       >
-        <HeartIcon color={`${favorites.includes(dog) ? "red" : "white"}`} />
+        <HeartIcon color={`${state.favorites.includes(dog) ? "red" : "white"}`} />
       </button>
     </article>
   );
